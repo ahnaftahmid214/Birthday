@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 18th Birthday Rabeya! ✨</title>
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #090a0f, #1f0529, #120324, #080014);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Hearts Layer */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            color: #ff3366;
+            font-size: 20px;
+            user-select: none;
+            animation: floatUp linear infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 51, 102, 0.8));
+            opacity: 0.8;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg) scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        /* Ambient Glow Spheres */
+        .glow-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(236,72,153,0.3) 0%, rgba(0,0,0,0) 70%);
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        .glow-orb-1 { top: 10%; left: 10%; }
+        .glow-orb-2 { bottom: 10%; right: 10%; background: radial-gradient(circle, rgba(139,92,246,0.3) 0%, rgba(0,0,0,0) 70%); }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+            100% { transform: scale(1.3) translate(30px, -30px); opacity: 0.9; }
+        }
+
+        /* Main Card Container */
+        .card-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 45px 35px;
+            max-width: 580px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 
+                        0 0 40px rgba(236, 72, 153, 0.25),
+                        inset 0 0 15px rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 10;
+            animation: floatCard 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-12px); }
+        }
+
+        /* Top Milestone Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(244, 114, 182, 0.25), rgba(139, 92, 246, 0.25));
+            color: #f472b6;
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            border: 1px solid rgba(244, 114, 182, 0.4);
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(244, 114, 182, 0.2);
+        }
+
+        /* Continuous Blinking Glowing Title */
+        .blinking-title {
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+            font-size: 2.3rem;
+            font-weight: 800;
+            line-height: 1.35;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+            animation: liveBlink 1.4s ease-in-out infinite alternate;
+        }
+
+        @keyframes liveBlink {
+            0% {
+                color: #ff71ce;
+                text-shadow: 0 0 10px #ff71ce, 0 0 20px #ff71ce, 0 0 40px #ff71ce, 0 0 80px #ff71ce;
+                transform: scale(1);
+            }
+            50% {
+                color: #01cdfe;
+                text-shadow: 0 0 15px #01cdfe, 0 0 30px #01cdfe, 0 0 60px #01cdfe;
+                opacity: 0.9;
+            }
+            100% {
+                color: #fffb96;
+                text-shadow: 0 0 20px #fffb96, 0 0 35px #fffb96, 0 0 70px #fffb96, 0 0 100px #fffb96;
+                transform: scale(1.02);
+            }
+        }
+
+        .divider {
+            height: 2px;
+            width: 100px;
+            background: linear-gradient(90deg, transparent, #f472b6, #8b5cf6, transparent);
+            margin: 22px auto;
+        }
+
+        /* Wish Message */
+        .wish-message {
+            font-size: 1.15rem;
+            line-height: 1.85;
+            color: #e2e8f0;
+            font-weight: 400;
+            margin-bottom: 32px;
+        }
+
+        .highlight-text {
+            color: #f472b6;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(244, 114, 182, 0.5);
+        }
+
+        .heart-icon {
+            color: #ef4444;
+            display: inline-block;
+            animation: heartbeat 1.2s infinite;
+            filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.8));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.35); }
+        }
+
+        /* Interactive Celebrate Button */
+        .celebrate-btn {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6);
+            background-size: 200% 200%;
+            animation: btnGradient 3s ease infinite;
+            color: #ffffff;
+            border: none;
+            padding: 16px 36px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.5), 0 0 20px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Hind Siliguri', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes btnGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .celebrate-btn:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.7), 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .celebrate-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            .blinking-title {
+                font-size: 1.75rem;
+            }
+            .wish-message {
+                font-size: 1rem;
+            }
+            .card-container {
+                padding: 32px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Background Ambient Lights -->
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <!-- Floating Hearts Container -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <div class="card-container">
+        <div class="badge">👑 Official 18th Milestone 👑</div>
+        
+        <!-- Onoboroto Blink Kora Live Title -->
+        <h1 class="blinking-title">Happy Birthday To You<br>Rabeya! 🎉</h1>
+        
+        <div class="divider"></div>
+
+        <!-- Heartfelt Wish Message -->
+        <p class="wish-message">
+            আজকের এই বিশেষ দিনে তোমার জন্য রইলো অনেক অনেক শুভকামনা ও গভীর ভালোবাসা <span class="heart-icon">❤️</span><br><br>
+            দেখতে দেখতে জীবনের সুন্দর একটা অধ্যায় পার করে <span class="highlight-text">১৮ বছরে পদার্পণ করলে!</span> অ্যাডাল্টহুডের এই নতুন পথচলা তোমার জন্য নিয়ে আসুক নতুন নতুন স্বপ্ন, সীমাহীন আনন্দ আর অনেক সফলতা।<br><br>
+            তুমি যেমন আছো, সবসময় তেমনই সুন্দর ও হাসিখুশি থেকো।
+            <br><br>
+            <span class="highlight-text">Welcome to 18 & May all your dreams come true! ✨</span>
+        </p>
+
+        <!-- Interactive Burst Button -->
+        <button class="celebrate-btn" onclick="triggerCelebration()">আবার সেলিব্রেট করো ✨</button>
+    </div>
+
+    <script>
+        // Automatic Confetti and Burst Effects on Entry
+        window.addEventListener('DOMContentLoaded', () => {
+            startBirthdayCelebration();
+            createFloatingHearts();
+        });
+
+        // Generate Flying Floating Hearts Continuously
+        function createFloatingHearts() {
+            const container = id('heartsContainer');
+            const heartIcons = ['❤️', '💖', '💗', '💓', '💕', '✨'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                
+                // Random position & animation speed
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 18) + 'px';
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 8000);
+            }, 300);
+        }
+
+        // Confetti Celebration Trigger
+        function startBirthdayCelebration() {
+            // Main Cannon Burst
+            confetti({
+                particleCount: 130,
+                spread: 100,
+                origin: { y: 0.6 }
+            });
+
+            // Fireworks Side Cannon Effect
+            var duration = 3.5 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 4,
+                    angle: 60,
+                    spread: 60,
+                    origin: { x: 0 }
+                });
+                confetti({
+                    particleCount: 4,
+                    angle: 120,
+                    spread: 60,
+                    origin: { x: 1 }
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        function triggerCelebration() {
+            startBirthdayCelebration();
+        }
+
+        function id(name) {
+            return document.getElementById(name);
+        }
+    </script>
+</body>
+</html>
